@@ -14,7 +14,6 @@ def cli_entry():
     args = parser.parse_args()
 
     if args.uid:
-        # Import fetch function directly from routes
         import asyncio
         from app.api.routes import fetch_player_stats_from_source
 
