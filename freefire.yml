@@ -1,0 +1,33 @@
+name: FreeFire UID Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      uid:
+        description: 'Target player UID (e.g. 1234567890)'
+        required: true
+        default: '3869404928'
+
+jobs:
+  run-uid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run UID script
+        env:
+          UID_INPUT: ${{{{ github.event.inputs.uid }}}}
+        run: |
+          echo "Running runner for UID: $UID_INPUT"
+          python run_uid.py --uid "$UID_INPUT"
