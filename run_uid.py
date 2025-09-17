@@ -14,7 +14,7 @@ def main():
     parser.add_argument('--uid', required=True, help='Player UID to fetch')
     args = parser.parse_args()
 
-    url = f"/api/player-info?uid={args.uid}"
+    url = f"/api/player-info?id={args.uid}"
     with app.test_request_context(url):
         resp = get_player_info()
         # route functions may return (response, status) or a Response object
