@@ -27,7 +27,7 @@ jobs:
 
       - name: Run UID script
         env:
-          UID_INPUT: ${{{{ github.event.inputs.uid }}}}
+          UID_INPUT: ${{ github.event.inputs.uid }}
         run: |
           echo "Running runner for UID: $UID_INPUT"
           python run_uid.py --uid "$UID_INPUT"
